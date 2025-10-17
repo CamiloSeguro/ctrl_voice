@@ -27,93 +27,124 @@ st.set_page_config(page_title="Chimba Voice Control", page_icon="🎙️", layou
 # CSS con glassmorphism, gradientes y animaciones
 st.markdown("""
 <style>
-/* Fondo con gradiente */
+/* Fondo gradiente profundo */
 .main {
-  background: radial-gradient(1200px 600px at 10% 10%, #1f2937 0%, #0b1220 40%, #05080f 100%);
+  background: radial-gradient(circle at 20% 20%, #0e1628 0%, #03060d 100%);
+  color: #e7ecff !important;
 }
 
-/* Glass cards */
+/* --- Tarjetas y contenedores --- */
 .glass {
   background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(18px) saturate(140%);
   border: 1px solid rgba(255,255,255,.12);
-  border-radius: 22px;
-  padding: 18px 20px;
-  box-shadow: 0 16px 48px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.05);
+  border-radius: 20px;
+  padding: 18px 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.4), inset 0 1px 1px rgba(255,255,255,.05);
+  transition: all 0.3s ease;
+}
+.glass:hover {
+  border-color: rgba(91,140,255,.35);
+  box-shadow: 0 12px 38px rgba(91,140,255,.25);
 }
 
-/* Títulos con brillo sutil */
+/* --- Títulos --- */
 h1, h2, h3 {
-  color: #e5edff !important;
+  color: #a5b9ff !important;
+  text-shadow: 0 0 12px rgba(91,140,255,.25);
 }
-small, .stCaption, .stSubheader, label, p, .st-emotion-cache-1fv8s86 {
-  color: #c9d2f0 !important;
+small, p, label, .stCaption, .stSubheader {
+  color: #cfd7f0 !important;
 }
 
-/* Botón mic con glow */
+/* --- Botón del micrófono --- */
 .bk-btn {
   border-radius: 999px !important;
-  padding: 14px 22px !important;
+  padding: 16px 26px !important;
   font-weight: 700 !important;
-  letter-spacing: .3px;
-  border: 1px solid rgba(255,255,255,.16) !important;
-  background: linear-gradient(135deg, #5b8cff, #8a5bff) !important;
+  border: 1px solid rgba(255,255,255,.15) !important;
+  background: linear-gradient(145deg, #6b8cff, #935dff) !important;
   color: white !important;
-  box-shadow: 0 8px 24px rgba(91,140,255,.45), 0 0 0 0 rgba(138,91,255,.35);
-  transition: transform .06s ease, box-shadow .4s ease;
+  box-shadow: 0 0 0 rgba(91,140,255,.4);
+  transition: all 0.35s ease;
 }
 .bk-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 36px rgba(91,140,255,.55), 0 0 24px 6px rgba(138,91,255,.3);
+  transform: scale(1.03);
+  box-shadow: 0 0 24px 6px rgba(140,100,255,.35);
 }
 
-/* Estado pill */
+/* --- Pills y etiquetas --- */
 .pill {
-  display:inline-flex;align-items:center;gap:.5rem;
-  padding:.35rem .7rem;border-radius:999px;
+  display:inline-flex;align-items:center;gap:.45rem;
+  padding:.35rem .8rem;border-radius:999px;
   border:1px solid rgba(255,255,255,.18);
-  background: rgba(255,255,255,.08); color:#e8edff; font-weight:600;
+  background: rgba(109,159,255,.15);
+  color:#dfe4ff; font-weight:600;
+  box-shadow: inset 0 0 10px rgba(91,140,255,.25);
 }
 
-/* Chips de comando */
-.chips { display:flex; gap:.5rem; flex-wrap:wrap; }
+/* --- Chips de comando --- */
+.chips { display:flex; gap:.55rem; flex-wrap:wrap; }
 .chip {
-  border:1px solid rgba(255,255,255,.18); border-radius:999px; padding:.35rem .75rem;
-  color:#e8edff; background: rgba(255,255,255,.06); cursor:pointer; user-select:none;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:999px;
+  padding:.4rem .9rem;
+  color:#e5eaff;
+  background: rgba(255,255,255,.06);
+  transition: all 0.25s ease;
 }
-.chip:hover { background: rgba(255,255,255,.12); }
+.chip:hover {
+  background: linear-gradient(120deg,#617cff,#9a6dff);
+  color:white;
+  box-shadow: 0 0 16px rgba(109,159,255,.4);
+  transform: scale(1.05);
+}
 
-/* Ondas cuando escucha */
+/* --- Animación de ondas --- */
 .wave {
-  display:flex; align-items:flex-end; gap:4px; height:36px;
+  display:flex;align-items:flex-end;gap:4px;height:36px;justify-content:center;
 }
 .wave span{
-  width:6px; border-radius:3px;
-  background: linear-gradient(180deg,#a6b6ff,#9b6bff);
+  width:6px;border-radius:3px;
+  background: linear-gradient(180deg,#8a9dff,#b07dff);
   animation: bounce .9s ease-in-out infinite;
 }
-.wave span:nth-child(2){ animation-delay: .1s }
-.wave span:nth-child(3){ animation-delay: .2s }
-.wave span:nth-child(4){ animation-delay: .3s }
-.wave span:nth-child(5){ animation-delay: .4s }
-
+.wave span:nth-child(2){animation-delay:.1s}
+.wave span:nth-child(3){animation-delay:.2s}
+.wave span:nth-child(4){animation-delay:.3s}
+.wave span:nth-child(5){animation-delay:.4s}
 @keyframes bounce {
-  0%, 100% { height: 6px; opacity:.5 }
-  50% { height: 36px; opacity:1 }
+  0%,100%{height:8px;opacity:.5}
+  50%{height:36px;opacity:1}
 }
 
-/* Caja chat */
+/* --- Burbuja del historial --- */
 .bubble {
-  padding:.7rem 1rem; border:1px solid rgba(255,255,255,.12);
-  border-radius:16px; background: rgba(255,255,255,.06); color:#e9edff;
+  padding:.7rem 1rem;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.07);
+  color:#e5eaff;
+  box-shadow: inset 0 0 10px rgba(255,255,255,.05);
 }
-.bubble.me { background: rgba(109, 159, 255, .18); border-color: rgba(109,159,255,.4); }
-.bubble.sys { background: rgba(155, 107, 255, .16); border-color: rgba(155,107,255,.38); }
+.bubble.me { background: rgba(90,140,255,.18); border-color: rgba(91,140,255,.4); }
+.bubble.sys { background: rgba(155, 107, 255, .18); border-color: rgba(155,107,255,.35); }
 
-/* Audio player limpio */
-audio { width: 100%; margin-top: .5rem; filter: drop-shadow(0 8px 18px rgba(0,0,0,.35)); }
+/* --- Audio player --- */
+audio { width: 100%; margin-top: .6rem; border-radius:10px; }
+
+/* --- Scrollbar suave --- */
+::-webkit-scrollbar {width:10px;}
+::-webkit-scrollbar-thumb {
+  background: rgba(109,159,255,.25);
+  border-radius:6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(109,159,255,.5);
+}
 </style>
 """, unsafe_allow_html=True)
+
 
 # ───────────────────────────────────────────────────────────────
 # Helpers
