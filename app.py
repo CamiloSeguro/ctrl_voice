@@ -1,4 +1,4 @@
-# app.py — Chimba Voice Control (versión corregida con grilla limpia de comandos)
+# app.py — Voice Control (versión corregida con grilla limpia de comandos)
 import os
 import time
 import json
@@ -15,7 +15,7 @@ from gtts import gTTS
 # ───────────────────────────────────────────────────────────────
 # CONFIGURACIÓN BÁSICA
 # ───────────────────────────────────────────────────────────────
-st.set_page_config(page_title="Chimba Voice Control", page_icon="🎙️", layout="wide")
+st.set_page_config(page_title="Voice Control", page_icon="🎙️", layout="wide")
 
 # CSS mejorado (ajustado + grilla limpia)
 st.markdown("""
@@ -153,7 +153,7 @@ with st.sidebar:
 # ───────────────────────────────────────────────────────────────
 c1, c2 = st.columns([1, 2], vertical_alignment="center")
 with c1:
-    st.markdown("### 🎙️ **Chimba Voice Control**")
+    st.markdown("### 🎙️ **Voice Control**")
     st.markdown('<div class="pill">En línea ✅</div>', unsafe_allow_html=True)
 with c2:
     st.markdown('<div class="glass">Pulsa el micrófono, habla y enviamos el comando por MQTT. También te respondo con voz. 😎</div>', unsafe_allow_html=True)
