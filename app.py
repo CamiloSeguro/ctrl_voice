@@ -159,5 +159,5 @@ if result:
         pass
 
 st.markdown("</div>", unsafe_allow_html=True)  # glass-card
-st.markdown("<p class='footer'>Hecho con ❤️ en Streamlit + Bokeh + MQTT</p>", unsafe_allow_html=True)
+st.markdown("<p class='footer'>Hecho por Camilo Seguro</p>", unsafe_allow_html=True)
 st.markdown("</div>", unsafe_allow_html=True)  # container
