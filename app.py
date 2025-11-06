@@ -25,7 +25,7 @@ port=1883
 client1= paho.Client("LucesCSC")
 client1.on_message = on_message
 
-# ===================== ESTILO CHIMBA =====================
+# ===================== ESTILO =====================
 st.set_page_config(page_title="Interfaces Multimodales", page_icon="🎙", layout="centered")
 st.markdown("""
 <style>
