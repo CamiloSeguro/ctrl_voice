@@ -23,7 +23,7 @@ def on_message(client, userdata, message):
         
 
 
-broker="broker.mqttdashboard"
+broker="157.230.214.127"
 port=1883
 client1= paho.Client("LucesCSC")
 client1.on_message = on_message
@@ -52,7 +52,7 @@ if st.button('OFF'):
     client1.on_publish = on_publish                          
     client1.connect(broker,port)  
     message =json.dumps({"Act1":act1})
-    ret= client1.publish("cmqtt_s", message)
+    ret= client1.publish("voice_ctrlCSC", message)
   
     
 else:
