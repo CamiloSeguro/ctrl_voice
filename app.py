@@ -126,13 +126,14 @@ small, .muted { color: #8ea0c7 !important; }
   color:#dbeafe; font-weight:700; font-size:.85rem; box-shadow: 0 8px 22px rgba(0,0,0,.35);
 }
 
+/* Contenedor para centrar imagen + caption */
 .voice-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;    /* ⭐ Centra horizontalmente */
-    justify-content: center;
-    text-align: center;     /* ⭐ Centra el caption */
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
 }
 
 /* Botón mic */
@@ -176,7 +177,7 @@ code { background: rgba(15,23,42,.42); padding: 3px 7px; border-radius: 6px; fon
 }
 </style>
 
-<!-- Capas de estrellas / fugaces (tu set actual) -->
+<!-- Capas de estrellas / fugaces -->
 <div id="stars"></div><div id="stars2"></div><div id="stars3"></div>
 <div class="shooting-wrap">
   <span class="shooting"></span>
@@ -186,16 +187,15 @@ code { background: rgba(15,23,42,.42); padding: 3px 7px; border-radius: 6px; fon
 </div>
 """, unsafe_allow_html=True)
 
-# —— FONDO CÓSMICO EXTRA + AURORA (debajo de todo, no toca lógica)
+# —— FONDO CÓSMICO EXTRA + AURORA
 st.markdown("""
 <div id="cosmic-bg"></div>
 <div id="aurora"></div>
 <style>
-  /* Nebulosa multicolor fija (base) */
   #cosmic-bg{
     position: fixed;
     inset: 0;
-    z-index: -5; /* más al fondo que #stars (-3) */
+    z-index: -5;
     background:
       radial-gradient(1200px 900px at 8% 12%,   #6d28d9 0%, transparent 60%),
       radial-gradient(1000px 700px at 88% 20%,  #2563eb 0%, transparent 62%),
@@ -207,7 +207,6 @@ st.markdown("""
     pointer-events: none;
   }
 
-  /* Capa aurora animada — movimiento muy lento para “vivo” */
   #aurora{
     position: fixed;
     inset: -10%;
@@ -239,12 +238,9 @@ st.markdown("""
   <div class="badge">🛰️ <span>Cabina de mando • <small>Streamlit → MQTT → Wokwi</small></span></div>
 
   <div class="logo-wrap">
-    <!-- LOGO CONSTELACIÓN (SVG inline, minimal) -->
     <svg class="logo-constellation" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Constelación">
-      <!-- Líneas -->
       <path d="M20 92 L48 70 L78 78 L100 26" stroke="url(#g1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
       <path d="M48 70 L62 40" stroke="url(#g2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
-      <!-- Nodos -->
       <circle class="spark" cx="20" cy="92" r="3.6" fill="#a5b4fc"/>
       <circle class="spark" cx="48" cy="70" r="4.2" fill="#93c5fd"/>
       <circle class="spark" cx="62" cy="40" r="3.4" fill="#c7d2fe"/>
@@ -279,6 +275,7 @@ st.markdown("""
 
 st.subheader("CONTROL POR VOZ 🎙️")
 
+# ---------- Imagen centrada ----------
 st.markdown("<div class='voice-center'>", unsafe_allow_html=True)
 
 image = Image.open('voice_ctrl.jpg')
@@ -290,12 +287,27 @@ st.image(
 
 st.markdown("</div>", unsafe_allow_html=True)
 
+# ---------- Card con texto + botón ----------
+st.markdown("<div class='glass-card'>", unsafe_allow_html=True)
+st.markdown("### ✨ Pulsa el botón y habla")
+st.markdown(
+    "Convierte tu voz en texto y publícalo en MQTT → "
+    "<code>voice_ctrlCSC</code><br/>"
+    "<span class='muted'>Tu mensaje viaja por el broker hasta tu universo Wokwi 🛰️🪐.</span>",
+    unsafe_allow_html=True
+)
+
 # ============== Botón Bokeh ==============
 st.markdown("<div class='voice-btn'>", unsafe_allow_html=True)
 stt_button = Button(label="🎤 Iniciar reconocimiento", width=260)
 
 stt_button.js_on_event("button_click", CustomJS(code="""
+    if (!('webkitSpeechRecognition' in window)) {
+        alert("Tu navegador no soporta reconocimiento de voz. Prueba con Chrome.");
+        return;
+    }
     var recognition = new webkitSpeechRecognition();
+    recognition.lang = "es-CO";
     recognition.continuous = true;
     recognition.interimResults = true;
 
@@ -319,8 +331,9 @@ result = streamlit_bokeh_events(
     key="listen",
     refresh_on_update=False,
     override_height=75,
-    debounce_time=0)
-st.markdown("</div>", unsafe_allow_html=True)
+    debounce_time=0
+)
+st.markdown("</div>", unsafe_allow_html=True)  # cierre voice-btn
 
 # ============== Lógica MQTT (sin tocar) ==============
 if result:
