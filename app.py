@@ -117,6 +117,14 @@ small, .muted { color: #8ea0c7 !important; }
   padding-bottom: 3px;
 }
 
+.hero h1,
+.hero h2,
+.hero h3,
+.hero p {
+  color: #e5e7eb !important;
+  text-shadow: 0 1px 3px rgba(15,23,42,0.9);
+}
+
 /* ---------- TARJETAS, CHIPS, BOTONES ---------- */
 .glass-card {
   background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.15);
