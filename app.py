@@ -284,7 +284,7 @@ st.markdown(
 
 # ============== Botón Bokeh ==============
 st.markdown("<div class='voice-btn'>", unsafe_allow_html=True)
-stt_button = Button(label="🎧 Iniciar reconocimiento", width=240)
+stt_button = Button(label="🎤 Iniciar reconocimiento", width=260)
 
 stt_button.js_on_event("button_click", CustomJS(code="""
     var recognition = new webkitSpeechRecognition();
