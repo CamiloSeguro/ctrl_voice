@@ -126,14 +126,23 @@ small, .muted { color: #8ea0c7 !important; }
   color:#dbeafe; font-weight:700; font-size:.85rem; box-shadow: 0 8px 22px rgba(0,0,0,.35);
 }
 
-/* Contenedor para centrar imagen + caption */
-.voice-center {
+/* Contenedor para centrar imagen + caption de CONTROL POR VOZ */
+.voice-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   width: 100%;
+}
+.voice-box figcaption {
+  margin-top: 6px !important;
+  padding: 0 !important;
+  line-height: 1.1 !important;
+}
+.voice-box [data-testid="stImage"] {
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 /* Botón mic */
@@ -155,7 +164,7 @@ small, .muted { color: #8ea0c7 !important; }
   border-radius:50%; transform: translate(-50%,-50%); box-shadow: 0 0 22px #93c5fd, 0 0 40px #a78bfa; }
 .orbit {
   position:absolute; top:50%; left:50%; border:1px dashed rgba(255,255,255,.24);
-  border-radius:50%; transform: translate(-50%,-50%);
+  border-radius:50%; transform: translate(-50%, -50%);
 }
 .o1 { width:170px; height:170px; animation: spin 20s linear infinite; }
 .o2 { width:128px; height:128px; animation: spin 14s linear infinite reverse; }
@@ -275,20 +284,19 @@ st.markdown("""
 
 st.subheader("CONTROL POR VOZ 🎙️")
 
-# --- centramos usando columnas ---
-col1, col2, col3 = st.columns([1, 2, 1])
+# ---- Imagen + caption centrados con voice-box ----
+st.markdown("<div class='voice-box'>", unsafe_allow_html=True)
 
-with col2:
-    image = Image.open('voice_ctrl.jpg')
-    st.image(image, width=230)
-    st.markdown(
-        "<p style='text-align:center; color:#8ea0c7; font-size:0.9rem;'>"
-        "🎧 Dile algo al universo y deja que viaje por MQTT"
-        "</p>",
-        unsafe_allow_html=True
-    )
+image = Image.open('voice_ctrl.jpg')
+st.image(
+    image,
+    width=230,
+    caption="🎧 Dile algo al universo y deja que viaje por MQTT"
+)
 
-# a partir de aquí sigue igual tu glass-card
+st.markdown("</div>", unsafe_allow_html=True)
+
+# ---------- Card con texto + botón ----------
 st.markdown("<div class='glass-card'>", unsafe_allow_html=True)
 st.markdown("### ✨ Pulsa el botón y habla")
 st.markdown(
