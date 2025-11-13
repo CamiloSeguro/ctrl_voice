@@ -275,19 +275,20 @@ st.markdown("""
 
 st.subheader("CONTROL POR VOZ 🎙️")
 
-# ---------- Imagen centrada ----------
-st.markdown("<div class='voice-center'>", unsafe_allow_html=True)
+# --- centramos usando columnas ---
+col1, col2, col3 = st.columns([1, 2, 1])
 
-image = Image.open('voice_ctrl.jpg')
-st.image(
-    image,
-    width=230,
-    caption="🎧 Dile algo al universo y deja que viaje por MQTT"
-)
+with col2:
+    image = Image.open('voice_ctrl.jpg')
+    st.image(image, width=230)
+    st.markdown(
+        "<p style='text-align:center; color:#8ea0c7; font-size:0.9rem;'>"
+        "🎧 Dile algo al universo y deja que viaje por MQTT"
+        "</p>",
+        unsafe_allow_html=True
+    )
 
-st.markdown("</div>", unsafe_allow_html=True)
-
-# ---------- Card con texto + botón ----------
+# a partir de aquí sigue igual tu glass-card
 st.markdown("<div class='glass-card'>", unsafe_allow_html=True)
 st.markdown("### ✨ Pulsa el botón y habla")
 st.markdown(
