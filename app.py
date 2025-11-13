@@ -126,6 +126,15 @@ small, .muted { color: #8ea0c7 !important; }
   color:#dbeafe; font-weight:700; font-size:.85rem; box-shadow: 0 8px 22px rgba(0,0,0,.35);
 }
 
+.voice-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* ⭐ Centra horizontalmente */
+    justify-content: center;
+    text-align: center;     /* ⭐ Centra el caption */
+    width: 100%;
+}
+
 /* Botón mic */
 .voice-btn .bk.bk-btn{
   background: radial-gradient(120% 120% at 30% 20%, #2563eb 0%, #7c3aed 60%, #a855f7 100%) !important;
