@@ -270,17 +270,16 @@ st.markdown("""
 
 st.subheader("CONTROL POR VOZ 🎙️")
 
-image = Image.open('voice_ctrl.jpg')
-st.image(image, width=230, caption="🎧 Dile algo al universo y deja que viaje por MQTT")
+st.markdown("<div class='voice-center'>", unsafe_allow_html=True)
 
-st.markdown("<div class='glass-card'>", unsafe_allow_html=True)
-st.markdown("### ✨ Pulsa el botón y habla")
-st.markdown(
-    "Convierte tu voz en texto y publícalo en MQTT → "
-    "<code>voice_ctrlCSC</code><br/>"
-    "<span class='muted'>Tu mensaje viaja por el broker hasta tu universo Wokwi 🛰️🪐.</span>",
-    unsafe_allow_html=True
+image = Image.open('voice_ctrl.jpg')
+st.image(
+    image,
+    width=230,
+    caption="🎧 Dile algo al universo y deja que viaje por MQTT"
 )
+
+st.markdown("</div>", unsafe_allow_html=True)
 
 # ============== Botón Bokeh ==============
 st.markdown("<div class='voice-btn'>", unsafe_allow_html=True)
