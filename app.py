@@ -329,5 +329,5 @@ if result:
         pass
 
 st.markdown("</div>", unsafe_allow_html=True)  # glass-card
-st.markdown("<p class='footer'>Camilo Seguro-Eafit-2025</p>", unsafe_allow_html=True)
+st.markdown("<p class='footer'>🌠 Camilo Seguro & Laura Orozco • EAFIT • 2025</p>", unsafe_allow_html=True)
 st.markdown("</div>", unsafe_allow_html=True)  # container
