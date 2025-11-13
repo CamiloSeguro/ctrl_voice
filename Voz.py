@@ -78,19 +78,38 @@ body {
 
 /* ---------- LAYOUT ---------- */
 .main > div { padding-top: 0rem; }
-.container { max-width: 780px; margin: 0 auto; }
+.container { max-width: 820px; margin: 0 auto 2.2rem auto; }
+
+/* grid 2 columnas para imagen + card */
+.layout-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  margin-top: 1.6rem;
+  align-items: stretch;
+}
+.col {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+.col-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.col-right {}
 
 /* ---------- HERO CABINA ---------- */
 .hero {
-  position: relative; margin-top: 1rem; padding: 1.4rem 1.1rem; border-radius: 22px;
-  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-  border: 1px solid rgba(255,255,255,.14); box-shadow: 0 14px 48px rgba(0,0,0,.38);
-  backdrop-filter: blur(10px); text-align: center;
+  position: relative; margin-top: 0.6rem; padding: 1.4rem 1.1rem 1.5rem; border-radius: 22px;
+  background: linear-gradient(180deg, rgba(15,23,42,.96), rgba(15,23,42,.86));
+  border: 1px solid rgba(148,163,184,.4); box-shadow: 0 18px 55px rgba(15,23,42,.9);
+  backdrop-filter: blur(16px); text-align: center;
 }
 .hero:before {
   content: ""; position: absolute; inset: -1px; border-radius: 24px;
   background: conic-gradient(from 180deg at 50% 50%, #7c3aed55, #2563eb55, #22d3ee44, #7c3aed55);
-  filter: blur(28px); opacity: .28;
+  filter: blur(28px); opacity: .32;
 }
 
 /* ---------- LOGO CONSTELACIÓN ---------- */
@@ -104,11 +123,12 @@ body {
 
 /* ---------- TIPOGRAFÍA + ARCOÍRIS ---------- */
 h1 {
-  text-align:center; font-weight: 900; letter-spacing:.6px; margin:.1rem 0 .2rem 0;
+  text-align:center; font-weight: 900; letter-spacing:.6px; margin:.1rem 0 .3rem 0;
+  font-size: 1.9rem;
   background: linear-gradient(90deg,#c7d2fe, #a5b4fc, #93c5fd, #c7d2fe);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-h2, h3, h4 { color: #dbeafe !important; text-align:center; }
+h2, h3, h4 { color: #e5e7eb !important; text-align:center; }
 p, .stMarkdown { color:#a3b2cc !important; font-size: 1.0rem; }
 small, .muted { color: #8ea0c7 !important; }
 .rainbow-underline {
@@ -122,27 +142,53 @@ small, .muted { color: #8ea0c7 !important; }
 .hero h3,
 .hero p {
   color: #e5e7eb !important;
-  text-shadow: 0 1px 3px rgba(15,23,42,0.9);
+  text-shadow: 0 1px 4px rgba(15,23,42,0.95);
+}
+
+/* ---------- PANEL DE ESTADO ---------- */
+.status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: center;
+  margin-top: .75rem;
+}
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .32rem .75rem;
+  border-radius: 999px;
+  font-size: .8rem;
+  border: 1px solid rgba(148,163,184,.6);
+  background: radial-gradient(circle at top left, rgba(56,189,248,.22), rgba(15,23,42,.9));
+  color: #e5e7eb;
+}
+.status-pill span {
+  font-weight: 600;
+  color: #bfdbfe;
 }
 
 /* ---------- TARJETAS, CHIPS, BOTONES ---------- */
 .glass-card {
-  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.15);
-  border-radius: 22px; padding: 1.6rem; box-shadow: 0 0 28px rgba(0,0,0,.35);
-  backdrop-filter: blur(12px); text-align: center;
+  background: rgba(15,23,42,.9); border: 1px solid rgba(148,163,184,.5);
+  border-radius: 22px; padding: 1.6rem 1.5rem 1.4rem; box-shadow: 0 12px 40px rgba(15,23,42,.95);
+  backdrop-filter: blur(18px); text-align: left;
+}
+.glass-card h3 {
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: .4rem;
+}
+.glass-card p {
+  margin-bottom: .7rem;
 }
 .badge {
   display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:999px;
-  border:1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.18); background: rgba(15,23,42,.9);
   color:#e9d5ff; font-weight:700; font-size:.86rem;
 }
 .badge small { color:#b3a5ff; font-weight:600; }
-.chips { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; }
-.chip {
-  padding:.45rem .7rem; border-radius:999px; border:1px solid rgba(255,255,255,.18);
-  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-  color:#dbeafe; font-weight:700; font-size:.85rem; box-shadow: 0 8px 22px rgba(0,0,0,.35);
-}
 
 /* Contenedor para centrar imagen + caption de CONTROL POR VOZ */
 .voice-box {
@@ -152,11 +198,21 @@ small, .muted { color: #8ea0c7 !important; }
   justify-content: center;
   text-align: center;
   width: 100%;
+  padding: 1.1rem 1.4rem;
+  border-radius: 22px;
+  background: radial-gradient(circle at top, rgba(37,99,235,.26), rgba(15,23,42,.9));
+  border: 1px solid rgba(129,140,248,.55);
+  box-shadow: 0 12px 36px rgba(15,23,42,.9);
+}
+.voice-box h4 {
+  margin-bottom: .55rem;
 }
 .voice-box figcaption {
   margin-top: 6px !important;
   padding: 0 !important;
   line-height: 1.1 !important;
+  font-size: .86rem;
+  color: #c7d2fe;
 }
 .voice-box [data-testid="stImage"] {
   padding: 0 !important;
@@ -164,6 +220,9 @@ small, .muted { color: #8ea0c7 !important; }
 }
 
 /* Botón mic */
+.voice-btn {
+  margin-top: .9rem;
+}
 .voice-btn .bk.bk-btn{
   background: radial-gradient(120% 120% at 30% 20%, #2563eb 0%, #7c3aed 60%, #a855f7 100%) !important;
   border:none !important; color:white !important; font-weight:800 !important;
@@ -177,7 +236,7 @@ small, .muted { color: #8ea0c7 !important; }
 }
 
 /* ---------- ÓRBITAS DECORATIVAS ---------- */
-.orbit-wrap { position: relative; height: 190px; margin: .6rem auto 1.1rem; width: 190px; }
+.orbit-wrap { position: relative; height: 190px; margin: .6rem auto .3rem; width: 190px; }
 .planet { position:absolute; top:50%; left:50%; width:20px; height:20px; background:#93c5fd;
   border-radius:50%; transform: translate(-50%,-50%); box-shadow: 0 0 22px #93c5fd, 0 0 40px #a78bfa; }
 .orbit {
@@ -201,6 +260,20 @@ code { background: rgba(15,23,42,.42); padding: 3px 7px; border-radius: 6px; fon
 /* ---- Animación reducida si el usuario lo pide ---- */
 @media (prefers-reduced-motion: reduce) {
   #stars, #stars2, #stars3, .shooting, .o1, .o2, .o3 { animation: none !important; }
+}
+
+/* ---- Responsive tweaks ---- */
+@media (max-width: 768px) {
+  .hero {
+    margin-top: 0.2rem;
+    padding: 1.1rem 0.9rem 1.3rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  .layout-grid {
+    flex-direction: column;
+  }
 }
 </style>
 
@@ -260,7 +333,7 @@ st.markdown("""
 st.markdown("<div class='container'>", unsafe_allow_html=True)
 
 # ---------- HERO + LOGO + NARRATIVA ----------
-st.markdown("""
+st.markdown(f"""
 <div class="hero">
   <div class="badge">🛰️ <span>Cabina de mando • <small>Streamlit → MQTT → Wokwi</small></span></div>
 
@@ -297,24 +370,34 @@ st.markdown("""
     <div class="orbit o3"></div>
     <div class="planet"></div>
   </div>
+
+  <div class="status-row">
+    <div class="status-pill">📡 Broker <span>{broker}</span></div>
+    <div class="status-pill">🔌 Puerto <span>{port}</span></div>
+    <div class="status-pill">📨 Tópico <span>voice_ctrlCSC</span></div>
+    <div class="status-pill">🎙️ Modo <span>Reconocimiento continuo</span></div>
+  </div>
 </div>
 """, unsafe_allow_html=True)
 
-st.subheader("CONTROL POR VOZ 🎙️")
+# ---------- GRID: IZQUIERDA IMAGEN • DERECHA CARD ----------
+st.markdown("<div class='layout-grid'>", unsafe_allow_html=True)
 
-# ---- Imagen + caption centrados con voice-box ----
+# Columna izquierda: imagen + título
+st.markdown("<div class='col col-left'>", unsafe_allow_html=True)
 st.markdown("<div class='voice-box'>", unsafe_allow_html=True)
-
+st.markdown("#### CONTROL POR VOZ 🎙️")
 image = Image.open('voice_ctrl.jpg')
 st.image(
     image,
     width=230,
     caption="🎧 Dile algo al universo y deja que viaje por MQTT"
 )
-
+st.markdown("</div>", unsafe_allow_html=True)
 st.markdown("</div>", unsafe_allow_html=True)
 
-# ---------- Card con texto + botón ----------
+# Columna derecha: card + botón
+st.markdown("<div class='col col-right'>", unsafe_allow_html=True)
 st.markdown("<div class='glass-card'>", unsafe_allow_html=True)
 st.markdown("### ✨ Pulsa el botón y habla")
 st.markdown(
@@ -361,6 +444,10 @@ result = streamlit_bokeh_events(
     debounce_time=0
 )
 st.markdown("</div>", unsafe_allow_html=True)  # cierre voice-btn
+st.markdown("</div>", unsafe_allow_html=True)  # cierre glass-card
+st.markdown("</div>", unsafe_allow_html=True)  # cierre col-right
+
+st.markdown("</div>", unsafe_allow_html=True)  # cierre layout-grid
 
 # ============== Lógica MQTT (sin tocar) ==============
 if result:
@@ -376,6 +463,5 @@ if result:
     except:
         pass
 
-st.markdown("</div>", unsafe_allow_html=True)  # glass-card
 st.markdown("<p class='footer'>🌠 Camilo Seguro & Laura Orozco • EAFIT • 2025</p>", unsafe_allow_html=True)
 st.markdown("</div>", unsafe_allow_html=True)  # container
