@@ -29,6 +29,16 @@ client1.on_message = on_message
 st.set_page_config(page_title="Interfaces Multimodales", page_icon="🌌", layout="centered")
 st.markdown("""
 <style>
+html, body, [data-testid="stAppViewContainer"] {
+  background: transparent !important;
+}
+
+[data-testid="stHeader"], [data-testid="stToolbar"] {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
 /* ---------- FONDO GALÁCTICO + CAPAS DE ESTRELLAS ---------- */
 body {
   background:
